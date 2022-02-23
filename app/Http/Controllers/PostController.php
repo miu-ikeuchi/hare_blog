@@ -58,7 +58,8 @@ class PostController extends Controller
         }
 
         return redirect()
-            ->route('posts.show', $post);
+            ->route('posts.show', $post)
+            ->with('notice', '記事を登録しました');
     }
 
     /**
@@ -69,7 +70,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
